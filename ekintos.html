@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Ekintoş</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Butterfly+Kids|Open+Sans" rel="stylesheet">
+
+    <style type="text/css">
+    body {
+      background-color: #FFFDFB;
+      color: #333;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 100;
+      text-shadow: 2px 2px 2px #AAA;
+    }
+
+    h1 {
+      font-family: 'Butterfly Kids', cursive;
+      font-size: 48px;
+      margin: 0px;
+    }
+
+    .ekintos {
+      position: absolute;
+      width: 435.5px;
+      height: 445px;
+    }
+
+    .emzik {
+      position: absolute;
+      top: 175px;
+      left: 260px;
+      width: 110px;
+      height: 80px;
+    }
+
+    .hello {
+      position: absolute;
+      top: 220px;
+      left: 450px;
+      width: 350px;
+    }
+    .content {
+      margin:0px auto;
+      margin-bottom: 10%;
+      width: 800px;
+      position: relative;
+    }
+    #time {
+    }
+    </style>
+
+  </head>
+  <body>
+
+    <div class="content">
+      <img src="ekintos.png" class="ekintos" />
+      <img src="emzik.png" class="emzik" />
+      <div class="hello">
+        <h1><b>Hello, world !</b></h1>
+        It's been <div id="time"></div> since I was born.
+        <br>
+      </div>
+    </div>
+
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment-with-locales.min.js" crossorigin="anonymous"></script>
+
+    <!--CDN link for  TweenMax-->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
+
+    <script type="text/javascript">
+
+    var updateTime = function(){
+      var born = moment("2017-03-03T04:23:30.000Z")
+      var now = moment()
+      var msec = now-born
+      var d = moment.duration(msec);
+      $('#time').html( d.days() + " days " + d.hours() + " hours "
+        + d.minutes() + " minutes " + d.seconds() + " seconds " )
+    }
+
+    $(document).ready(function () {
+      updateTime()
+      setInterval(updateTime, 1000)
+
+      var tl = new TimelineLite()
+      tl.to(".emzik", 0.15, {x:"+=1", y:"-=3px", ease: Power3.easeOut})
+      tl.to(".emzik", 0.15, {x:"-=0.5", y:"+=5px", ease: Power2.easeOut})
+      tl.to(".emzik", 0.15, {x:"-=0.5", y:"-=2px", ease: Power1.easeOut})
+      setInterval(function(){
+        tl.restart()
+      }, 1300)
+
+    })
+
+    </script>
+  </body>
+</html>
