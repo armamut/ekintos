@@ -81,8 +81,9 @@
       var born = moment("2017-03-03T04:23:30.000Z")
       var now = moment()
       var msec = now-born
+      var days = now.diff(born, 'days') // =1
       var d = moment.duration(msec);
-      $('#time').html( d.days() + " days " + d.hours() + " hours "
+      $('#time').html( days + " days " + d.hours() + " hours "
         + d.minutes() + " minutes " + d.seconds() + " seconds " )
     }
 
